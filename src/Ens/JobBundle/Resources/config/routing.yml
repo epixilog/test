@@ -1,0 +1,11 @@
+ens_job:
+    resource: "@EnsJobBundle/Resources/config/routing/job.yml"
+    prefix:   /job
+
+ens_job_category:
+    resource: "@EnsJobBundle/Resources/config/routing/category.yml"
+    prefix:   /category
+
+ens_job_homepage:
+    path:     /
+    defaults: { _controller: EnsJobBundle:Job:index }

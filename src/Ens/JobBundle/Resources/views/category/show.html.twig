@@ -1,0 +1,62 @@
+{% extends 'EnsJobBundle::layout.html.twig' %}
+ 
+{% block title %}
+  Jobs in the {{ category.name }} category
+{% endblock %}
+ 
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('bundles/job/css/jobs.css') }}" type="text/css" media="all" />
+{% endblock %}
+ 
+{% block content %}
+  <div class="category">
+    <div class="feed">
+      <a href="">Feed</a>
+    </div>
+    <h1>{{ category.name }}</h1>
+  </div>
+ 
+  {% include 'EnsJobBundle:Job:list.html.twig' with {'jobs': category.activeJobs} %}
+
+  {% if last_page > 1 %}
+    <div class="pagination">
+      {% if page != 1 %}
+          <a href="{{ path('ens_category_show', { 'slug': category.slug, 'page': 1 }) }}">
+            <img src="{{ asset('bundles/job/images/first.png') }}" alt="First page" title="First page" />
+          </a>
+     
+          <a href="{{ path('ens_category_show', { 'slug': category.slug, 'page': previous_page }) }}">
+            <img src="{{ asset('bundles/job/images/previous.png') }}" alt="Previous page" title="Previous page" />
+          </a>
+      {% endif %}
+ 
+      {% for p in 1..last_page %}
+        {% if p == page %}
+          {{ page }}
+        {% else %}
+          <a href="{{ path('ens_category_show', { 'slug': category.slug, 'page': p }) }}">{{ p }}</a>
+        {% endif %}
+      {% endfor %}
+ 
+      {% if page != next_page %}
+          <a href="{{ path('ens_category_show', { 'slug': category.slug, 'page': next_page }) }}">
+            <img src="{{ asset('bundles/job/images/next.png') }}" alt="Next page" title="Next page" />
+          </a>
+     
+          <a href="{{ path('ens_category_show', { 'slug': category.slug, 'page': last_page }) }}">
+            <img src="{{ asset('bundles/job/images/last.png') }}" alt="Last page" title="Last page" />
+          </a>
+      {% endif %}
+    </div>
+  {% endif %}
+ 
+  <div class="pagination_desc">
+    <strong>{{ total_jobs }}</strong> jobs in this category
+ 
+    {% if last_page > 1 %}
+      - page <strong>{{ page }}/{{ last_page }}</strong>
+    {% endif %}
+  </div>
+
+{% endblock %}

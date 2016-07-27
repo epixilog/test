@@ -1,0 +1,4 @@
+ens_category_show:
+    path:     /{slug}/{page}
+    defaults: { _controller: "EnsJobBundle:Category:show", page: 1 }
+    methods:  GET

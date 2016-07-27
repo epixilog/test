@@ -1,0 +1,22 @@
+Ens\JobBundle\Entity\Job:
+    properties:
+          email:
+              - NotBlank: ~
+              - Email: ~
+          type:
+              - NotBlank: ~
+              - Choice: { callback: getTypeValues }
+          company:
+              - NotBlank: ~
+          position:
+              - NotBlank: ~
+          location:
+              - NotBlank: ~
+          description:
+              - NotBlank: ~
+          how_to_apply:
+              - NotBlank: ~
+          category:
+            - NotBlank: ~
+          file:
+            - Image: ~

@@ -1,0 +1,12 @@
+services:
+    ens.job.admin.category:
+        class: Ens\JobBundle\Admin\CategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: job, label: Categories }
+        arguments: [null, Ens\JobBundle\Entity\Category, EnsJobBundle:CategoryAdmin]
+ 
+    ens.job.admin.job:
+        class: Ens\JobBundle\Admin\JobAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: job, label: Jobs }
+        arguments: [null, Ens\JobBundle\Entity\Job, EnsJobBundle:JobAdmin]
